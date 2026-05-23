@@ -1,0 +1,60 @@
+/* Container Box Alignment */
+.logo-grid-container {
+  display: grid;
+  /* Creates a responsive uniform column grid matrix */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Individual Card Blocks */
+.uniform-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fbf9f6; /* Flat subtle background wrapper */
+  height: 100px;             /* Enforces structural height consistency */
+  padding: 20px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Foolproof Image Standardization */
+.standardized-logo {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;       /* Prevents images from stretching or squeezing weirdly */
+  
+  /* --- Color Harmonization Filters --- */
+  /* This strips color, turning everything into a unified muted corporate grey */
+  filter: grayscale(100%) opacity(0.6); 
+  transition: filter 0.25s ease;
+}
+
+/* Interactive Hover States */
+.uniform-logo-item:hover {
+  transform: translateY(-2px);
+}
+
+.uniform-logo-item:hover .standardized-logo {
+  /* Restores original image colors beautifully on hover */
+  filter: grayscale(0%) opacity(1);
+}
+
+/* Micro Device Media Query overrides */
+@media (max-width: 480px) {
+  .logo-grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 flat rows on small smartphone screen profiles */
+    gap: 16px;
+  }
+  .uniform-logo-item {
+    height: 80px;
+  }
+}

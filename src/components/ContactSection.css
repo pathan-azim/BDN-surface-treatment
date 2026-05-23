@@ -1,0 +1,262 @@
+/* Container Base setup - matching the off-white/muted sage background tone */
+.contact-main-section {
+  background-color: #e5ebe4; 
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px 40px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1a1a1a;
+  border-top: 1px solid black;
+
+  margin :0 10px 0 10px ;
+
+}
+
+/* Asymmetric Grid 4-Block Split System */
+.contact-grid-matrix {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* Left panel is slightly wider */
+  gap: 40px 60px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.matrix-block {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography Base Configuration */
+.section-title {
+  font-size: 3.5rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.info-main-title {
+  font-size: 4rem;
+  font-weight: 500;
+  margin: 0 0 30px 0;
+  letter-spacing: -1px;
+}
+
+/* Form Styles Framework */
+.premium-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.form-row-split {
+  display: grid;
+  grid-template-columns: 3fr 1fr; /* Name fields take up dominant row sizing */
+  gap: 16px;
+}
+
+.premium-form input,
+.premium-form textarea {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(26, 26, 26, 0.4);
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.premium-form input::placeholder,
+.premium-form textarea::placeholder {
+  color: rgba(26, 26, 26, 0.5);
+}
+
+.premium-form input:focus,
+.premium-form textarea:focus {
+  border-color: #1a1a1a;
+}
+
+/* Specific Label Zone Wrappers */
+.file-upload-zone,
+.coating-request-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.upload-label-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-transform: capitalize;
+}
+
+.upload-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  background: transparent;
+  border: 1px solid rgba(26, 26, 26, 0.4);
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #1a1a1a;
+}
+
+.action-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Direct Form Submit Button styling */
+.form-submit-btn {
+  background-color: #0b1a13; /* Deep forest charcoal black color tone */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  width: max-content;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: opacity 0.2s;
+}
+
+.form-submit-btn:hover {
+  opacity: 0.9;
+}
+
+/* Map Content Block Framework */
+.map-wrapper-frame {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+}
+
+.map-graphic-asset {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* filter: grayscale(100%) contrast(1.1) brightness(1.05); Mutes photo down into vector design layout lines */
+  /* opacity: 0.4; */
+}
+
+.map-pin-indicator {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  color: #0b1a13;
+}
+
+.map-brand-accent {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Metadata Text Column System */
+.info-details-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+}
+
+.info-column h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: rgba(26, 26, 26, 0.8);
+}
+
+.info-column p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 4px 0;
+}
+
+.info-column a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.info-column a:hover {
+  border-bottom-color: #1a1a1a;
+}
+
+.spacing-top {
+  margin-top: 24px !important;
+}
+
+/* Outer Bottom Sub-Footer Layout rules */
+.contact-section-footer {
+  width: 100%;
+  max-width: 1400px;
+  margin: 60px auto 0 auto;
+  border-top: 1px solid rgba(26, 26, 26, 0.2);
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.footer-right {
+  display: flex;
+  gap: 20px;
+}
+
+/* Responsive Scaling Breakpoint handlers */
+@media (max-width: 1024px) {
+  .contact-grid-matrix {
+    grid-template-columns: 1fr; /* Collapses grid blocks to stack linearly down screen */
+    gap: 40px;
+  }
+  
+  .section-title, .info-main-title {
+    font-size: 2.8rem;
+  }
+  
+  .title-block {
+    order: 1;
+  }
+  .form-block {
+    order: 2;
+  }
+  .map-block {
+    order: 4;
+  }
+  .metadata-block {
+    order: 3;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-main-section {
+    padding: 40px 20px 20px 20px;
+  }
+  .info-details-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

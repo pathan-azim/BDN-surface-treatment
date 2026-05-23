@@ -1,0 +1,196 @@
+/* Asymmetric 6-Column Grid Layout */
+.bento-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Base Bento Framework */
+.bento-item {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f6efe4; /* Default warm light cream background */
+  box-sizing: border-box;
+}
+
+/* Image Background Engine */
+.bento-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.bento-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Structural Content & Text Layout */
+.bento-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.bento-text h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 12px 0;
+}
+
+.bento-text p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 80%;
+}
+
+/* Custom Interactive Pill Buttons */
+.bento-btn {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.bento-btn svg {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.bento-btn:hover {
+  transform: translateY(-2px);
+  background-color: #ffffff;
+}
+
+/* Dark text overlay gradient for cards with images */
+.bento-top-left::after,
+.bento-top-right::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.4) 100%);
+  z-index: 2;
+}
+
+/* --- Row 1: Explicit Grid Spans --- */
+
+/* Card 1: Top Left - Spans 3 Columns (Large Square) */
+.bento-top-left {
+  grid-column: span 3;
+  height: 420px;
+}
+.bento-top-left .bento-text h3,
+.bento-top-left .bento-text p {
+  color: #ffffff;
+}
+
+/* Card 2: Top Right - Spans 3 Columns (Medium Box) */
+.bento-top-right {
+  grid-column: span 3;
+  height: 420px;
+}
+.bento-top-right .bento-text h3,
+.bento-top-right .bento-text p {
+  color: #ffffff;
+}
+
+/* --- Row 2: Explicit Grid Spans --- */
+
+/* Card 3: Bottom Left - Spans 2 Columns (Muted Slate / Dark Brown) */
+.bento-bottom-left {
+  grid-column: span 2;
+  height: 340px;
+  background-color: #3b3734; /* Dark solid base tone */
+}
+.bento-bottom-left .bento-content {
+  justify-content: flex-start;
+}
+.bento-bottom-left .bento-text h3 {
+  color: #ffffff;
+}
+.bento-bottom-left .bento-btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* Card 4: Bottom Middle - Spans 2 Columns (Image Block) */
+.bento-bottom-mid {
+  grid-column: span 2;
+  height: 340px;
+  background-color: #ece5da;
+}
+.bento-bottom-mid .bento-content {
+  justify-content: flex-end; /* Shoves descriptions below the image */
+}
+.bento-bottom-mid .bento-bg {
+  height: 65%; /* Image finishes high up, revealing bottom text layout */
+}
+.bento-bottom-mid .bento-text {
+  margin-top: auto;
+}
+.bento-bottom-mid .bento-btn {
+  display: none; /* Reference design omits active CTA on center element */
+}
+
+/* Card 5: Bottom Right - Spans 2 Columns (Vertical Image Card) */
+.bento-bottom-right {
+  grid-column: span 2;
+  height: 340px;
+}
+.bento-bottom-right .bento-text h3 {
+  color: #ffffff;
+}
+.bento-bottom-right .bento-btn {
+  display: none;
+}
+
+/* --- Responsive Media Viewports --- */
+@media (max-width: 1024px) {
+  .bento-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-top-left, .bento-top-right,
+  .bento-bottom-left, .bento-bottom-mid, .bento-bottom-right {
+    grid-column: span 1;
+    height: 380px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-container {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+  .bento-top-left, .bento-top-right,
+  .bento-bottom-left, .bento-bottom-mid, .bento-bottom-right {
+    grid-column: span 1;
+    height: 340px;
+  }
+}

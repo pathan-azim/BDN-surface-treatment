@@ -1,0 +1,117 @@
+/* Unique Section Framework Wrapper */
+#custom-services-section {
+  width: 100%;
+  padding: 60px 0;
+  box-sizing: border-box;
+}
+
+/* Enforces full width list stack, breaking global grid bindings */
+.accordion-list-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  /* border-top: 1px solid #1a1a1a; */
+  /* border-bottom: 1px solid #1a1a1a; */
+  margin-top: 40px;
+}
+
+/* Individual Row Layout using absolute Grid spacing */
+.accordion-row-item {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important; /* Forces 2 clean columns split 50/50 */
+  align-items: center !important;
+  width: 100% !important;
+  padding: 35px 40px !important;
+  /* border-bottom: 1px solid #1a1a1a; */
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: visible; /* Allows the floating preview picture to overflow borders */
+  box-sizing: border-box;
+}
+
+.accordion-list-wrapper .accordion-row-item:last-child {
+  border-bottom: none;
+}
+
+/* --- Smooth Top-to-Bottom Shutter Background Effect --- */
+.accordion-row-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%; /* Starts flat at the top boundary line */
+  background-color: #f7a000; /* Your signature amber-orange fill color */
+  z-index: 1; /* Sits behind text content but above the row backdrop */
+  transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Premium fluid transition */
+}
+
+/* On hover, dropdown the shutter height cleanly */
+.accordion-row-item.row-is-active::before {
+  height: 100%;
+}
+
+/* Title Layout Rules */
+.accordion-title-box {
+  position: relative;
+  z-index: 2; /* Forces text layers over the top of the shutter color dropdown */
+}
+
+.accordion-title-box h3 {
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  color: #1a1a1a !important;
+  margin: 0 !important;
+  letter-spacing: -1px;
+}
+
+/* Image Field System */
+.accordion-image-box {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 3; /* Positions preview image safely above all background elements */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Reveal active preview images smoothly */
+.accordion-row-item.row-is-active .accordion-image-box {
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Floating picture configuration matching your graphic */
+.accordion-preview-img {
+  width: 340px !important;
+  height: 380px !important;
+  object-fit: cover !important;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: -190px; /* Aligns the image center beautifully over the horizontal cutoff split */
+}
+
+/* Mobile Screen Fallbacks */
+@media (max-width: 768px) {
+  .accordion-row-item {
+    grid-template-columns: 1fr !important;
+    padding: 24px 20px !important;
+    gap: 15px;
+  }
+
+  .accordion-title-box h3 {
+    font-size: 1.8rem !important;
+  }
+
+  .accordion-image-box {
+    display: none !important;
+  }
+}
