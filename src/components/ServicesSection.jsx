@@ -26,11 +26,11 @@ export default function ServicesSection() {
               onMouseEnter={() => setHoveredIndex(i)}
             >
               {/* Left Side: Large Bold Title */}
+
+              {/* Right Side: Centered Hover Preview Image */}
               <div className="accordion-title-box">
                 <h3>{service.title}</h3>
               </div>
-
-              {/* Right Side: Centered Hover Preview Image */}
               <div className="accordion-image-box">
                 {service.imageUrl && (
                   <img
