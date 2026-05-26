@@ -1,0 +1,43 @@
+/* Base Raw Uncoated Item Properties */
+.coatable-item {
+  position: relative;
+  background: #1a1c1e;
+  border: 1px solid #2d3135;
+  color: #8a8f98;
+  padding: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); /* Ultra smooth paint spread transition */
+}
+
+/* Base Grey Product Mask Image Layer fallback */
+.coatable-item img {
+  filter: grayscale(100%) brightness(40%) contrast(120%);
+  transition: filter 1.2s ease;
+}
+
+/* ========================================================= */
+/* COATED STATE: Fired when the powder cloud passes over it  */
+/* ========================================================= */
+.coatable-item.is-coated {
+  color: #ffffff;
+  border-color: #00ffcc;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 204, 0.15), 
+    inset 0 0 15px rgba(0, 255, 204, 0.1);
+  background: #0b2b24; /* Changes base to deep coated background tint */
+}
+
+/* The item images wake up into vivid hyper-gloss coatings */
+.coatable-item.is-coated img {
+  filter: grayscale(0%) brightness(100%) contrast(100%) drop-shadow(0 0 10px rgba(0,255,204,0.3));
+}
+
+/* Glow Accent strip running through heading lines */
+.coatable-item h3 {
+  transition: color 0.6s ease;
+}
+.coatable-item.is-coated h3 {
+  color: #00ffcc;
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
