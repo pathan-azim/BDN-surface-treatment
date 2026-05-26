@@ -315,9 +315,69 @@ nav {
   border-radius: 60px;
   object-fit: cover;
 }
+#moving-text {
+    overflow-x: auto;
+    /* position: relative; */
+    width: 100vw;
+    margin-left: -6vw;
+    white-space: nowrap;
+
+}
+
+#moving-text::-webkit-scrollbar {
+    display: none;
+}
+
+#moving-text h1 {
+    font-size: 9vw;
+    display: inline-block;
+
+}
+
+.con {
+    display: inline-block;
+    white-space: nowrap;
+    animation-name: move;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.gola {
+    margin: 1vw 2vw;
+background: linear-gradient(145deg, #134e37, #093624, #031c12);
+box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.2), 
+    0 4px 6px rgba(0, 0, 0, 0.3);
+border-radius: 50%;
+height: 5vw;
+width: 5vw;
+display: inline-block;
+border: 1px solid #0d4731;
+}
+
+@keyframes move {
+    from {
+        transform: translatex(0);
+    }
+
+    to {
+        transform: translatex(-100%);
+    }
+}
+.topbar {
+  /* position: relative; or fixed/absolute depending on your layout */
+  z-index: 11 !important;
+}
 
 
 
+/* Optional: If a background element or canvas is overlapping the topbar, 
+   prevent it from blocking pointer clicks/hovers */
+.hero video, 
+canvas {
+  pointer-events: none; 
+}
 .process {
   grid-template-columns: repeat(4, 1fr);
 

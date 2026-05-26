@@ -5,12 +5,14 @@
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 30px;
   max-width: 1200px;
-  margin: 40px;
+  margin: 40px auto; /* Centered your margin cleanly */
   padding: 0 20px;
   width: 100%;
   margin-top: 40px;
-  
   box-sizing: border-box;
+
+  /* --- GSAP 3D optimization --- */
+  overflow: visible !important; /* Prevents logos from clipping when they pop forward */
 }
 
 /* Individual Card Blocks */
@@ -23,7 +25,12 @@
   padding: 20px;
   border-radius: 12px;
   box-sizing: border-box;
-  transition: transform 0.25s ease, filter 0.25s ease;
+  border: 1px solid transparent; /* Gives room for the smooth green border transition */
+  
+  /* --- GSAP 3D optimization --- */
+  will-change: transform, opacity, box-shadow, border-color;
+  /* Removed 'transform' from transition to prevent fighting with GSAP */
+  transition: filter 0.25s ease, border-color 0.4s ease, box-shadow 0.4s ease; 
 }
 
 /* Foolproof Image Standardization */
@@ -33,18 +40,15 @@
   width: auto;
   height: auto;
   object-fit: contain;       /* Prevents images from stretching or squeezing weirdly */
+  pointer-events: none;      /* Ensures the image doesn't steal hovers from the card block */
   
   /* --- Color Harmonization Filters --- */
-  /* This strips color, turning everything into a unified muted corporate grey */
   filter: grayscale(100%) opacity(0.6); 
   transition: filter 0.25s ease;
 }
 
 /* Interactive Hover States */
-.uniform-logo-item:hover {
-  transform: translateY(-2px);
-}
-
+/* Combined with your React onMouseEnter/onMouseLeave handlers */
 .uniform-logo-item:hover .standardized-logo {
   /* Restores original image colors beautifully on hover */
   filter: grayscale(0%) opacity(1);
