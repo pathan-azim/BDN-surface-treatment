@@ -20,7 +20,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="contact-main-section">
+    <section className="section contact-main-section" id="contact">
       <div className="contact-grid-matrix">
         
         {/* TOP LEFT BLOCK: Section Main Title */}

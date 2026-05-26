@@ -5,6 +5,7 @@ import "./LogoWall.css"; // Import the uniform logo grid styles
 export default function LogoWall() {
   return (
     <section className="section light logos-section">
+      <br></br>
       <SectionHeader title="TRUSTED BY INDUSTRY LEADERS" badge="PARTNERS" />
       
       <div className="logo-grid-container">

@@ -3,12 +3,12 @@ export default function Topbar() {
   return (
     <header className="topbar">
       <div className="brand"><img src={logo} alt="Power Coating Logo" /></div>
-      <nav>
-        <a href="#work">WORK</a>
-        <a href="#services">SERVICES</a>
-        <a href="#about">ABOUT</a>
-        <a href="#process">PROCESS</a>
-        <a href="#contact">CONTACT</a>
+      <nav className="navbtns">
+        <h4><a href="#work">WORK</a></h4>
+        <h4><a href="#services">SERVICES</a></h4>
+        <h4><a href="#about">ABOUT</a></h4>
+        <h4><a href="#process">PROCESS</a></h4>
+        <h4><a href="#contact">CONTACT</a></h4>
       </nav>
       <div className="location"><button>Get a quote</button></div>
     </header>

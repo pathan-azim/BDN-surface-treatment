@@ -4,7 +4,10 @@ import fw2 from "../assets/fw2.png";
 import fw3 from "../assets/fw3.png";
 import fw4 from "../assets/fw4.png";
 import fw5 from "../assets/fw5.png";
-import pretreatment from "../assets/pretreatment.png";
+import pretreatment from "../assets/pretreatmentimg.png";
+import inspection from "../assets/inspection.png";
+import electrocoating from "../assets/electro-coating.jpeg";
+import oven from "../assets/oven.png";
 export const featuredWorks = [
   { title: "Project Saturn", subtitle: "Carbon green finish", tag: "NVIDIA", imageUrl:fw1 },
   { title: "Project Cosmos", subtitle: "Premium coating", tag: "apple", imageUrl:fw2 },
@@ -19,9 +22,9 @@ export const featuredWorks = [
 
 export const processItems = [
   { step: "1", title: "Pre-Treatment", desc: "Chemical surface preparation and sandblasting.", imageUrl: pretreatment },
-  { step: "2", title: "Electrostatic Coating", desc: "Precision powder application with electrostatic spray.", imageUrl: fw2 },
-  { step: "3", title: "Thermal Curing", desc: "Optimal polymer cross-linking in controlled temperatures.", imageUrl: fw3 },
-  { step: "4", title: "QC Inspection", desc: "Thickness and durability verification for flawless finish.", imageUrl: fw4 },
+  { step: "2", title: "Electrostatic Coating", desc: "Precision powder application with electrostatic spray.", imageUrl: electrocoating },
+  { step: "3", title: "Thermal Curing", desc: "Optimal polymer cross-linking in controlled temperatures.", imageUrl: oven },
+  { step: "4", title: "QC Inspection", desc: "Thickness and durability verification for flawless finish.", imageUrl: inspection },
 ];
 
 export const servicesData = [
