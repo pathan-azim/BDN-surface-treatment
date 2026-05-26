@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import gsap from "gsap";
 
 import Topbar from "./components/Topbar";
 import Hero from "./components/Hero";
@@ -12,99 +13,88 @@ import Footer from "./components/Footer";
 import LoadingScreen from "./components/LoadingScreen";
 
 export default function App() {
-  
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [siteReady, setSiteReady] = useState(false);
 
   useEffect(() => {
-    let currentProgress = 0;
-    let animationFrame;
+    let value = 0;
 
-    // Smooth loading animation
-    const animateProgress = () => {
-      currentProgress += Math.random() * 4;
+    const interval = setInterval(() => {
+      value += Math.random() * 12;
 
-      if (currentProgress >= 92) {
-        currentProgress = 92;
+      if (value >= 100) {
+        value = 100;
       }
 
-      setProgress(Math.floor(currentProgress));
+      setProgress(Math.floor(value));
 
-      animationFrame = requestAnimationFrame(animateProgress);
-    };
+      if (value === 100) {
+        clearInterval(interval);
 
-    animateProgress();
+        setTimeout(() => {
+          gsap.to(".loader-wrapper", {
+            opacity: 0,
+            duration: 1,
+            ease: "power3.inOut",
+            onComplete: () => {
+              setLoading(false);
 
-    const handleLoad = () => {
-      cancelAnimationFrame(animationFrame);
+              setTimeout(() => {
+                document.body.style.overflow = "auto";
+              }, 100);
+            },
+          });
 
-      let finalProgress = currentProgress;
+          gsap.fromTo(
+            ".page",
+            {
+              opacity: 0,
+              y: 30,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1.4,
+              ease: "power3.out",
+              delay: 0.3,
+            }
+          );
+        }, 600);
+      }
+    }, 120);
 
-      const finishLoading = () => {
-        finalProgress += 2;
+    document.body.style.overflow = "hidden";
 
-        if (finalProgress >= 100) {
-          finalProgress = 100;
-          setProgress(100);
-
-          // Wait before revealing site
-          setTimeout(() => {
-            setLoading(false);
-
-            // Render actual website AFTER loader disappears
-            setTimeout(() => {
-              setSiteReady(true);
-            }, 100);
-
-          }, 600);
-
-          return;
-        }
-
-        setProgress(Math.floor(finalProgress));
-
-        requestAnimationFrame(finishLoading);
-      };
-
-      finishLoading();
-    };
-
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
-    }
-
-    return () => {
-      cancelAnimationFrame(animationFrame);
-      window.removeEventListener("load", handleLoad);
-    };
+    return () => clearInterval(interval);
   }, []);
 
-  // Loader first
-  if (loading) {
-    return <LoadingScreen progress={progress} />;
-  }
-
   return (
-    <div className="page">
-      {siteReady && (
-        <>
-          <Topbar />
-
-          <main>
-            <Hero />
-            <FacilityTour />
-            <FeaturedWork />
-            <ProcessSection />
-            <ServicesSection />
-            <LogoWall />
-          </main>
-
-          <Footer />
-        </>
+    <>
+      {loading && (
+        <div className="loader-wrapper">
+          <LoadingScreen progress={progress} />
+        </div>
       )}
-    </div>
+
+      <div
+        className="page"
+        style={{
+          opacity: loading ? 0 : 1,
+        }}
+      >
+        <Topbar />
+
+        <main>
+          <Hero startAnimation={!loading} />
+          <FacilityTour />
+          <FeaturedWork />
+          <ProcessSection />
+          <ServicesSection />
+          <LogoWall />
+        </main>
+
+        <Footer />
+      </div>
+    </>
   );
 }

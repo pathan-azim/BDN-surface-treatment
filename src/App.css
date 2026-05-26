@@ -382,7 +382,16 @@ canvas {
   grid-template-columns: repeat(4, 1fr);
 
 }
+.loader-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: #d8d1c8;
+}
 
+.page {
+  min-height: 100vh;
+}
 .process-card,
 .service-card {
   background: #f4f6f1;
