@@ -7,10 +7,11 @@ export default function Topbar() {
   const containerRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Use a single useGSAP hook scoped to the master container to handle all lifecycle states cleanly
+  // 1. Initial Page Mount Animation — Runs EXACTLY ONCE on mount
+  // Notice the empty dependency array [] inside the wrapper block
   useGSAP(() => {
-    // 1. Run Initial On-Mount Entrance Animations
     const introTl = gsap.timeline();
+    
     introTl.from(".topbar", {
       yPercent: -100,
       duration: 0.8,
@@ -35,10 +36,13 @@ export default function Topbar() {
       duration: 0.5,
       ease: "back.out(1.7)"
     }, "-=0.3");
+  }, { dependencies: [], scope: containerRef }); // [] ensures this never runs again when menu updates
 
-    // 2. Setup the Interaction Animation Logic for the Mobile Drawer
+
+  // 2. Mobile Drawer Dynamic Toggle Logic — Runs ONLY when isOpen transitions
+  useGSAP(() => {
     if (isOpen) {
-      // Open state transition sequence
+      // Open Timeline State Execution
       gsap.timeline()
         .to(".mobile-drawer", {
           opacity: 1,
@@ -46,6 +50,13 @@ export default function Topbar() {
           duration: 0.3,
           ease: "power2.out"
         })
+        /* FIXED: Fade down the desktop header logo/buttons container background 
+           so it vanishes completely behind the sand overlay screens on mobile viewports */
+        .to(".topbar", {
+          opacity: 0,
+          pointerEvents: "none",
+          duration: 0.2
+        }, "<")
         .from(".mobile-nav a", {
           opacity: 0,
           y: 30,
@@ -54,23 +65,29 @@ export default function Topbar() {
           ease: "power3.out"
         }, "-=0.15");
     } else {
-      // Close state transition sequence
-      gsap.to(".mobile-drawer", {
-        opacity: 0,
-        pointerEvents: "none",
-        duration: 0.25,
-        ease: "power2.in"
-      });
+      // Close Timeline State Execution
+      gsap.timeline()
+        .to(".mobile-drawer", {
+          opacity: 0,
+          pointerEvents: "none",
+          duration: 0.25,
+          ease: "power2.in"
+        })
+        /* FIXED: Bring your clean core desktop header layout back into play smoothly 
+           when the overlay closes out */
+        .to(".topbar", {
+          opacity: 1,
+          pointerEvents: "all",
+          duration: 0.2
+        }, "<");
     }
-
-  }, { dependencies: [isOpen], scope: containerRef });
+  }, { dependencies: [isOpen], scope: containerRef }); // Exclusively fires on menu state changes
 
   const handleToggle = () => {
     setIsOpen(prev => !prev);
   };
 
   return (
-  
     <div ref={containerRef}>
       <header className="topbar">
         <div className="brand">
@@ -89,11 +106,9 @@ export default function Topbar() {
         <div className="location">
           <button>Get a quote</button>
         </div>
-      </header> {/* <--- CLOSING HEADER HERE */}
+      </header>
 
-      {/* CRITICAL MOVE: The Hamburger Trigger is pulled OUT of the header.
-         Now it can float independently in screen-space with zero parent overflow clipping!
-      */}
+      {/* Hamburger Trigger (Freed outside header to stay fixed on top layer) */}
       <button 
         className={`mobile-menu-btn ${isOpen ? "open" : ""}`} 
         onClick={handleToggle}
@@ -106,15 +121,16 @@ export default function Topbar() {
 
       {/* Mobile Menu Overlay Layer */}
       <div className="mobile-drawer">
-        <nav className="mobile-nav">
-          <a href="#work" onClick={handleToggle}>WORK</a>
-          <a href="#services" onClick={handleToggle}>SERVICES</a>
-          <a href="#about" onClick={handleToggle}>ABOUT</a>
-          <a href="#process" onClick={handleToggle}>PROCESS</a>
-          <a href="#contact" onClick={handleToggle}>CONTACT</a>
-        </nav>
+        <div className="mobile-drawer-safe-zone">
+          <nav className="mobile-nav">
+            <a href="#work" onClick={handleToggle}>WORK</a>
+            <a href="#services" onClick={handleToggle}>SERVICES</a>
+            <a href="#about" onClick={handleToggle}>ABOUT</a>
+            <a href="#process" onClick={handleToggle}>PROCESS</a>
+            <a href="#contact" onClick={handleToggle}>CONTACT</a>
+          </nav>
+        </div>
       </div>
     </div>
-
   );
 }
