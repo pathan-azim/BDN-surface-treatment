@@ -1,21 +1,34 @@
+/* ==========================================================================
+   1. Global Resets, Fonts, and Configuration
+   ========================================================================== */
 @font-face {
   font-family: 'MyCustomFont';
-  src:
-  url('./assets/fonts/NEUEHAASDISPLAYBOLD.TTF') format('truetype');
+  src: url('./assets/fonts/NEUEHAASDISPLAYBOLD.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
 * {
   box-sizing: border-box;
-   font-family: 'MyCustomFont', sans-serif;
-
+  font-family: 'MyCustomFont', sans-serif;
 }
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal layout blowouts */
+  }
+}
+
 body {
   margin: 0;
   font-family: 'MyCustomFont', sans-serif;
   background: none;
   color: #111;
 }
+
 a {
   color: inherit;
   text-decoration: none;
@@ -24,96 +37,76 @@ a {
 .page {
   width: 100%;
   margin: 0 auto;
-  /* Remove or comment out this background color */
-  background: #e8efe6; 
+  background: #EFEBE5; 
   min-height: 100vh;
-
 }
-nav {
-    overflow: hidden;
-    /* height: 100px; */
-    width: 100%;
-    /* background-color: red; */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2vw 2vw;
-    /* position: relative; */
-    position: relative;
-    z-index: 25;
-    transition: all ease-in-out 0.8s;
+
+/* ==========================================================================
+   2. Desktop Topbar & Navigation Layout Base
+   ========================================================================== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  position: relative; /* Fixed: Kept inside doc flow to protect hero boundaries */
+  z-index: 100 !important;
+  box-sizing: border-box;
+}
+
+.brand img {
+  height: 40px; 
+  width: auto;
+  display: block;
 }
 
 .navbtns {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2vw;
-    width: 50vw;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .navbtns h4 {
-    position: relative;
-    padding: 8px 15px;
-    border: 1px solid #00000089;
-    border-radius: 50px;
-    color: rgba(0, 0, 0, 0.832);
-    font-size: 12px;
-    overflow: hidden;
+  position: relative;
+  padding: 8px 15px;
+  border: 1px solid #00000089;
+  border-radius: 50px;
+  color: rgba(0, 0, 0, 0.832);
+  font-size: 12px;
+  overflow: hidden;
+  margin: 0;
 }
 
 .navbtns h4 a {
-    text-decoration: none;
-    color: black;
-    position: relative;
-    z-index: 9;
+  text-decoration: none;
+  color: black;
+  position: relative;
+  z-index: 9;
 }
 
+/* Hover bubble effect setup */
 .navbtns h4::after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: #093624;
-    left: 0;
-    border-radius: 50%;
-    transition: all ease 0.5s;
-    bottom: -100%;
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #093624;
+  left: 0;
+  border-radius: 50%;
+  transition: all ease 0.5s;
+  bottom: -100%;
 }
 
 .navbtns h4:hover::after {
-    bottom: 0;
-    border-radius: 0;
+  bottom: 0;
+  border-radius: 0;
 }
 
 .navbtns h4:hover a {
-    color: #fff;
-}
-.topbar {
-  height: 5vh;
-  /* background: #101610; */
-  color: #dfe8df;
-  width: 100%;
-  display: flex;
-  position: absolute;
-  margin-top: 14px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  color: #fff;
 }
 
-
-
-.brand img {
-  width: 200px;
-  height: 54px;
-  /* background-color: #fff; */
-  display: flex;
-  align-items: center;
-}
 .location button {
   background: #244f33;
   color: #fff;
@@ -121,68 +114,55 @@ nav {
   padding: 10px 15px;
   border-radius: 32px;
   cursor: pointer;
+  margin-left: 1.5rem;
   font-size: 14px;
   font-weight: 600;
 }
-@layer base {
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
-  }
-}
-.topbar nav {
-  display: flex;
-  gap: 18px;
-  color: #4D544D;
 
+/* Hide mobile targets cleanly by default */
+.mobile-menu-btn, 
+.mobile-drawer {
+  display: none !important;
 }
 
+/* ==========================================================================
+   3. Hero Section
+   ========================================================================== */
 .hero {
   height: 90vh ;
   width: 100%;
-  
   display: flex;
- 
   color: #093624;
   justify-content: space-between;
   gap: 20px;
   padding: 28px;
+}
 
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-top: 10vh;
 }
 
 .hero-text h1 {
   font-family: 'MyCustomFont', sans-serif;
   font-size: 7vw;
-  /* margin-left: 100px; */
-
   line-height: 0.9;
   margin-bottom: 15%;
   padding-left: 10px;
   max-width: 10ch;
- 
-  
   font-weight: 700;
   text-transform: uppercase;
-  /* background-color: #fff; */
 }
 
-.hero-text{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
- 
-  position: relative;
-  margin-top: 10vh;
-}
 .eyebrow {
   font-size: 12px;
   letter-spacing: 0.12em;
   color: #b7c4b6;
   margin-bottom: 18px;
   margin-left: 15px;
-  
 }
 
 .hero-visual {
@@ -192,30 +172,22 @@ nav {
   min-height: 420px;
 }
 
-/* .hero-swatch {
-  width: 100%;
-  height: 100%;
-  min-height: 420px;
-  border-radius: 10px;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.28), transparent 28%),
-    linear-gradient(145deg, #153421, #0b140d 55%, #234d34);
-  box-shadow: inset 0 0 60px rgba(0,0,0,0.45);
-  position: relative;
-} */
-
-.section {
-  padding: 18px;
-  /* height: 110vh; */
-  padding-top:20px;
-  border-top: #0f1a10 1px solid;
- margin: 0 54px;
+.hero video, 
+canvas {
+  pointer-events: none; 
 }
 
-
+/* ==========================================================================
+   4. Main Content Cards, Grid Layouts & Sections
+   ========================================================================== */
+.section {
+  padding: 18px;
+  padding-top: 20px;
+  border-top: #0f1a10 1px solid;
+  margin: 0 54px;
+}
 
 .dark {
-
   color: #093624;
 }
 
@@ -224,11 +196,10 @@ nav {
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: 14px;
-  /* margin-top: 40px; */
   padding: 0 4px;
 }
 
-.PROCESS{
+.PROCESS {
   margin-top: 40px;
 }
 
@@ -247,8 +218,6 @@ nav {
 .grid {
   display: grid;
   gap: 30px;
-  /* width: 80%; */
-  
   align-items: center;
   justify-content: space-between;
 }
@@ -269,7 +238,6 @@ nav {
 
 .thumb {
   aspect-ratio: 4 / 3;
-
   background:
     linear-gradient(135deg, rgba(0,0,0,0.15), rgba(0,0,0,0)),
     linear-gradient(145deg, #244f33, #0f1a10 60%, #4f7355);
@@ -303,95 +271,19 @@ nav {
   opacity: 0.7;
 }
 
-
 .video-card video {
   width: 100%;
-  /* height: 100%; */
-  /* max-width: 720px; */
   position: relative;
   z-index: 11;
-  border-radius: 8px;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px;
   border-radius: 60px;
   object-fit: cover;
 }
-#moving-text {
-    overflow-x: auto;
-    /* position: relative; */
-    width: 100vw;
-    margin-left: -6vw;
-    white-space: nowrap;
 
-}
-
-#moving-text::-webkit-scrollbar {
-    display: none;
-}
-
-#moving-text h1 {
-    font-size: 9vw;
-    display: inline-block;
-
-}
-
-.con {
-    display: inline-block;
-    white-space: nowrap;
-    animation-name: move;
-    animation-duration: 10s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-.gola {
-    margin: 1vw 2vw;
-background: linear-gradient(145deg, #134e37, #093624, #031c12);
-box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.2), 
-    0 4px 6px rgba(0, 0, 0, 0.3);
-border-radius: 50%;
-height: 5vw;
-width: 5vw;
-display: inline-block;
-border: 1px solid #0d4731;
-}
-
-@keyframes move {
-    from {
-        transform: translatex(0);
-    }
-
-    to {
-        transform: translatex(-100%);
-    }
-}
-.topbar {
-  /* position: relative; or fixed/absolute depending on your layout */
-  z-index: 11 !important;
-}
-
-
-
-/* Optional: If a background element or canvas is overlapping the topbar, 
-   prevent it from blocking pointer clicks/hovers */
-.hero video, 
-canvas {
-  pointer-events: none; 
-}
 .process {
   grid-template-columns: repeat(4, 1fr);
-
-}
-.loader-wrapper {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-  background: #d8d1c8;
 }
 
-.page {
-  min-height: 100vh;
-}
 .process-card,
 .service-card {
   background: #f4f6f1;
@@ -450,6 +342,57 @@ canvas {
   color: #4a554a;
 }
 
+/* ==========================================================================
+   5. Ticker / Infinite Moving Marquee
+   ========================================================================== */
+#moving-text {
+  overflow-x: hidden;
+  width: 100vw;
+  margin-left: -6vw;
+  white-space: nowrap;
+}
+
+#moving-text::-webkit-scrollbar {
+  display: none;
+}
+
+#moving-text h1 {
+  font-size: 9vw;
+  display: inline-block;
+}
+
+.con {
+  display: inline-block;
+  white-space: nowrap;
+  animation: move 10s linear infinite;
+}
+
+.gola {
+  margin: 1vw 2vw;
+  background: linear-gradient(145deg, #134e37, #093624, #031c12);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 4px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  height: 5vw;
+  width: 5vw;
+  display: inline-block;
+  border: 1px solid #0d4731;
+}
+
+@keyframes move {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+/* ==========================================================================
+   6. Loader & Footer
+   ========================================================================== */
+.loader-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: #d8d1c8;
+}
+
 .footer {
   background: #12301f;
   color: #e8f0e7;
@@ -466,4 +409,181 @@ canvas {
   display: grid;
   place-items: center;
 }
+/* ==========================================================================
+   7. Rebuilt Responsive Infrastructure & Clean Overlay State
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 24px;
+    gap: 24px;
+    height: auto;
+    min-height: 75vh;
+  }
+  .hero-text {
+    align-items: flex-start;
+    margin-top: 6vh;
+  }
+  .hero-text h1 {
+    font-size: clamp(2.4rem, 8vw, 5rem);
+    max-width: 100%;
+    padding-left: 0;
+    margin-bottom: 1.2rem;
+  }
+ .hero .hero-video {
+    /* Safe fallback scale tracking variable adjustment for tablet layouts */
+    --video-zoom: 2 !important;
+    zoom: unset !important; /* Forces removal of old layout engines */
+  }
 
+  .section { margin: 0 24px; }
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .footer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  /* Layout Flow Normalizer */
+  .topbar {
+    padding: 1.25rem 1rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap !important;
+  }
+
+  /* Structural element cleanout */
+  .navbtns {
+    display: none !important;
+  }
+
+  .brand {
+    flex-shrink: 0;
+  }
+  .brand img {
+    height: 32px;
+    width: auto;
+    zoom:1.8;
+  }
+
+  .location {
+    margin-left: auto;
+    margin-right: 2.5rem;
+    display: block !important;
+  }
+  .location button {
+    padding: 0.55rem 1.1rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  /* Interactive Hamburger Layout */
+  
+  .mobile-menu-btn {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  
+    /* --- CRITICAL LAYER FIXES --- */
+    position: fixed !important;   /* Force it into screen-space independent of the header container */
+    top: 2rem !important;       /* Adjust this to match your desktop header vertical spacing alignment */
+    right: 1.3rem !important;       /* Pins it tightly to the right side viewport grid boundary */
+    z-index: 2000000000 !important; /* Sets layer dominance completely above the 999999 drawer background */
+  }
+
+  .mobile-menu-btn span {
+    width: 100%;
+    height: 3px;
+    background-color: #093624; /* Signature dark green color */
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+    
+  }
+
+  /* Hamburger transformation styling states */
+  .mobile-menu-btn.open span {
+    
+    background-color: #093624; /* Keeps button clearly visible against beige drawer background */
+  }
+  .mobile-menu-btn.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+  .mobile-menu-btn.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  /* REBUILT DRAWER: Native Screen-Space Overlay Base State.
+     Using Opacity instead of calculation coordinates protects layout structure.
+  */
+  .mobile-drawer {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: fixed !important;
+    inset: 0 !important; /* Spans top, bottom, left, and right completely */
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: #f4ede4 !important; /* Light sand/beige color */
+    z-index: 999999 !important; /* Sits over everything except the hamburger trigger button */
+    
+    /* GSAP takes control over these properties cleanly without conflicting */
+    opacity: 0;
+    pointer-events: none; 
+    box-sizing: border-box;
+  }
+
+  .mobile-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2.25rem !important;
+    width: 100%;
+    text-align: center;
+  }
+
+  .mobile-nav a {
+    color: #093624 !important; /* Premium branding dark green */
+    font-size: 2.25rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    display: inline-block;
+  }
+
+  /* Remainder Page Mobile Resets */
+  .hero { padding: 20px 16px; }
+  .hero-text h1 { font-size: clamp(2.5rem, 10vw, 4.2rem); }
+  .hero .hero-video {
+    left: 50% !important;
+    top: 60% !important;
+    width: 60vw !important;
+    max-width: 280px !important;
+    height: auto !important;
+
+    /* --- CRITICAL RESPONSIVE BREAKPOINT CHANGE --- */
+    --video-zoom: 3.5 !important; /* Seamlessly changes scale ratio configuration on mobile screens */
+    zoom: unset !important;
+  }
+  .section { margin: 0 16px; padding: 18px 0; }
+  .grid.works { grid-template-columns: 1fr; }
+  .process { grid-template-columns: repeat(2, 1fr); }
+  .services { grid-template-columns: 1fr; }
+  #moving-text { width: auto !important; margin-left: 0 !important; white-space: normal !important; }
+  #moving-text h1 { font-size: 8vw; }
+  .footer { grid-template-columns: 1fr; text-align: center; }
+  .footer > * { justify-self: center; }
+}
+
+@media (max-width: 640px) {
+  .hero { padding: 16px 12px; }
+  .hero .hero-video { width: 80vw !important; max-width: 260px !important; top: 62% !important; }
+  .section { margin: 0 12px; }
+  .footer { padding: 18px 12px; }
+}

@@ -8,31 +8,31 @@ export default function FacilityTour() {
       <div className="video-card">
         <video src={coatingprocess} muted loop autoPlay ></video>
          <div id="moving-text">
-        <div class="con">
+        <div className="con">
           <h1> SUPERIOR FINISHES</h1>
-          <div class="gola"></div>
+          <div className="gola"></div>
           <h1>ADVANCED PROTECTION</h1>
-          <div class="gola"></div>
+          <div className="gola"></div>
           <h1>PRECISION</h1>
-          <div class="gola"></div>
+          <div className="gola"></div>
         </div>
 
-        <div class="con">
+        <div className="con">
           <h1> SUPERIOR FINISHES</h1>
-          <div class="gola"></div>
+          <div className="gola"></div>
           <h1>ADVANCED PROTECTION</h1>
-          <div class="gola"></div>
+          <div className="gola"></div>
           <h1>PRECISION</h1>
-          <div class="gola"></div>
+          <div className="gola"></div>
         </div>
 
-        <div class="con">
+        <div className="con">
           <h1> SUPERIOR FINISHES</h1>
-          <div class="gola"></div>
+          <div className="gola"></div>
           <h1>ADVANCED PROTECTION</h1>
-          <div class="gola"></div>
+          <div className="gola"></div>
           <h1>PRECISION</h1>
-          <div class="gola"></div>
+          <div className="gola"></div>
         </div>
 
       </div>

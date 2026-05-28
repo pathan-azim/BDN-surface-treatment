@@ -17,73 +17,101 @@ export default function App() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    let value = 0;
-
-    const interval = setInterval(() => {
-      value += Math.random() * 12;
-
-      if (value >= 100) {
-        value = 100;
-      }
-
-      setProgress(Math.floor(value));
-
-      if (value === 100) {
-        clearInterval(interval);
-
-        setTimeout(() => {
-          gsap.to(".loader-wrapper", {
-            opacity: 0,
-            duration: 1,
-            ease: "power3.inOut",
-            onComplete: () => {
-              setLoading(false);
-
-              setTimeout(() => {
-                document.body.style.overflow = "auto";
-              }, 100);
-            },
-          });
-
-          gsap.fromTo(
-            ".page",
-            {
-              opacity: 0,
-              y: 30,
-            },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1.4,
-              ease: "power3.out",
-              delay: 0.3,
-            }
-          );
-        }, 600);
-      }
-    }, 120);
-
+    // Lock scrolling while loading
     document.body.style.overflow = "hidden";
 
-    return () => clearInterval(interval);
+    const videoUrl = "/BDN-surface-treatment/spiralsphere.webm";
+    const imageUrls = []; 
+
+    let loadedCount = 0;
+    const totalAssets = 1 + imageUrls.length;
+
+    // Direct configuration object reference to bypass the stale closure bug safely
+    const progressObject = { current: 0 };
+
+    const updateProgressState = (targetValue) => {
+      gsap.to(progressObject, {
+        current: targetValue,
+        duration: 0.4,
+        ease: "power1.out",
+        onUpdate: () => {
+          // Pulls values reliably from the live mutating object
+          setProgress(Math.floor(progressObject.current));
+        },
+        onComplete: () => {
+          if (targetValue === 100) {
+            triggerExitAnimations();
+          }
+        }
+      });
+    };
+
+    const itemLoaded = () => {
+      loadedCount++;
+      const currentTarget = Math.floor((loadedCount / totalAssets) * 100);
+      updateProgressState(currentTarget);
+    };
+
+    // Preload the Hero Video
+    const videoElement = document.createElement("video");
+    videoElement.src = videoUrl;
+    videoElement.preload = "auto";
+    videoElement.muted = true;
+    videoElement.playsInline = true;
+
+    videoElement.addEventListener("canplaythrough", itemLoaded, { once: true });
+    videoElement.load(); 
+
+    // Preload Images
+    imageUrls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+      img.onload = itemLoaded;
+      img.onerror = itemLoaded; 
+    });
+
+    // Handle Exit Animations
+    const triggerExitAnimations = () => {
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setLoading(false);
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      tl.to(".loader-wrapper", {
+        yPercent: -100,
+        duration: 0.8,
+        ease: "power4.inOut"
+      })
+      .fromTo(".page", 
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+        "-=0.4"
+      );
+    };
+
+    return () => {
+      videoElement.removeEventListener("canplaythrough", itemLoaded);
+    };
   }, []);
 
   return (
     <>
-      {loading && (
-        <div className="loader-wrapper">
-          <LoadingScreen progress={progress} />
-        </div>
-      )}
-
-      <div
-        className="page"
-        style={{
-          opacity: loading ? 0 : 1,
+      <div 
+        className="loader-wrapper" 
+        style={{ 
+          position: "fixed", 
+          inset: 0, 
+          zIndex: 9999,
+          pointerEvents: loading ? "all" : "none"
         }}
       >
-        <Topbar />
+        <LoadingScreen progress={progress} />
+      </div>
 
+      <div className="page">
+       
         <main>
           <Hero startAnimation={!loading} />
           <FacilityTour />
@@ -92,7 +120,6 @@ export default function App() {
           <ServicesSection />
           <LogoWall />
         </main>
-
         <Footer />
       </div>
     </>

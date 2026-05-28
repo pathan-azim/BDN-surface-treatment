@@ -4,20 +4,23 @@ import fw2 from "../assets/fw2.png";
 import fw3 from "../assets/fw3.png";
 import fw4 from "../assets/fw4.png";
 import fw5 from "../assets/fw5.png";
+import fw6 from "../assets/fw6.png";
+import fw7 from "../assets/fw7.png";
+import fw8 from "../assets/fw8.png";
 import pretreatment from "../assets/pretreatmentimg.png";
 import inspection from "../assets/inspection.png";
 import electrocoating from "../assets/electro-coating.jpeg";
 import oven from "../assets/oven.png";
 export const featuredWorks = [
   { title: "Project Saturn", subtitle: "Carbon green finish", tag: "NVIDIA", imageUrl:fw1 },
-  { title: "Project Cosmos", subtitle: "Premium coating", tag: "apple", imageUrl:fw2 },
-  { title: "Project Saturn", subtitle: "Gloss surface", tag: "apple", imageUrl:fw3 },
+  { title: "Project Cosmos", subtitle: "Premium coating", tag: "apple", imageUrl:fw6 },
+  { title: "Project Saturn", subtitle: "Gloss surface", tag: "apple", imageUrl:fw7 },
   { title: "Project Luna", subtitle: "Custom aluminum finish", tag: "siemens", imageUrl:fw4 },
-  { title: "Project Nova", subtitle: "Metal component", tag: "intel", imageUrl:fw5 },
+  { title: "Project Nova", subtitle: "Metal component", tag: "intel", imageUrl:fw8 },
   { title: "Precision Engineered", subtitle: "Motor housing", tag: "NVIDIA", imageUrl:fw5 },
-  { title: "Project Saturn", subtitle: "Industrial finish", tag: "NVIDIA" ,imageUrl:fw5},
+  { title: "Project Saturn", subtitle: "Industrial finish", tag: "NVIDIA" ,imageUrl:fw7},
   { title: "Project Saturn", subtitle: "Material study", tag: "jotun", imageUrl:fw5 },
-  { title: "Project Saturn", subtitle: "Special coating", tag: "apple", imageUrl:fw5 },
+  { title: "Project Saturn", subtitle: "Special coating", tag: "apple", imageUrl:fw7 },
 ];
 
 export const processItems = [
@@ -36,12 +39,12 @@ export const servicesData = [
   {
     title: "SOHO NYC",
     desc: "Architectural structural coating designed for high-traffic metropolitan exposure.",
-    imageUrl: fw2
+    imageUrl: fw6
   },
   {
     title: "NYWF Popup",
     desc: "Rapid deployment structural finishes with hyper-durable quick-cure polymers.",
-    imageUrl: fw3
+    imageUrl: fw7
   },
   {
     title: "Makers Studio HOI",
