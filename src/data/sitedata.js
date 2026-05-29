@@ -18,9 +18,9 @@ export const featuredWorks = [
   { title: "Project Luna", subtitle: "Custom aluminum finish", tag: "siemens", imageUrl:fw4 },
   { title: "Project Nova", subtitle: "Metal component", tag: "intel", imageUrl:fw8 },
   { title: "Precision Engineered", subtitle: "Motor housing", tag: "NVIDIA", imageUrl:fw5 },
-  { title: "Project Saturn", subtitle: "Industrial finish", tag: "NVIDIA" ,imageUrl:fw7},
-  { title: "Project Saturn", subtitle: "Material study", tag: "jotun", imageUrl:fw5 },
-  { title: "Project Saturn", subtitle: "Special coating", tag: "apple", imageUrl:fw7 },
+  { title: "Project moon", subtitle: "Industrial finish", tag: "NVIDIA" ,imageUrl:fw7},
+  { title: "Project sun", subtitle: "Material study", tag: "jotun", imageUrl:fw5 },
+  { title: "Project earth", subtitle: "Special coating", tag: "apple", imageUrl:fw7 },
 ];
 
 export const processItems = [
@@ -57,17 +57,22 @@ export const servicesData = [
 import logo1 from "../assets/logo1.png";
 import logo2 from "../assets/logo2.png";
 import logo3 from "../assets/logo3.png";
-// import logo4 from "../assets/logo4.png";
+import logo4 from "../assets/logo4.png";
+import logo5 from "../assets/logo5.png";
+import logo6 from "../assets/logo6.png";
+import logo7 from "../assets/logo7.png";
+import logo8 from "../assets/logo8.png";
+import logo9 from "../assets/logo9.png";
 
 export const clientLogos = [
   { id: 1, name: "Company One", imageUrl: logo1 },
   { id: 2, name: "Company Two", imageUrl: logo2 },
   { id: 3, name: "Company Three", imageUrl: logo3 },
-  { id: 4, name: "Company Four", imageUrl: logo3 },
-  { id: 5, name: "Company Five", imageUrl: logo1 },
-  { id: 6, name: "Company Six", imageUrl: logo3 },
-  { id: 7, name: "Company Seven", imageUrl: logo3 },
-  { id: 8, name: "Company Eight", imageUrl: logo1 },
-  { id: 9, name: "Company Nine", imageUrl: logo2 },
-  { id: 10, name: "Company Ten", imageUrl: logo3 },
+  { id: 4, name: "Company Four", imageUrl: logo4 },
+  { id: 5, name: "Company Five", imageUrl: logo5 },
+  { id: 6, name: "Company Six", imageUrl: logo6 },
+  { id: 7, name: "Company Seven", imageUrl: logo7 },
+  { id: 8, name: "Company Eight", imageUrl: logo8 },
+  { id: 9, name: "Company Nine", imageUrl: logo9 },
+  { id: 10, name: "Company Ten", imageUrl: logo2 },
 ];

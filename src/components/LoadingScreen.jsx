@@ -88,5 +88,4 @@ const LoadingScreen = ({ progress = 0 }) => {
     </div>
   );
 };
-
 export default LoadingScreen;

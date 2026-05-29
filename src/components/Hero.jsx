@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
 import Topbar from "./Topbar";
-
+import herotxt from "../assets/herotxtimg.png";
 export default function Hero({ startAnimation }) {
   const containerRef = useRef(null);
   const textRef = useRef(null);
@@ -61,7 +61,7 @@ export default function Hero({ startAnimation }) {
     scope: containerRef,
     dependencies: [startAnimation], 
   });
-
+  
   return (
     <>
       <Topbar startAnimation={startAnimation} />
@@ -81,9 +81,9 @@ export default function Hero({ startAnimation }) {
             ref={textRef} 
             style={{ opacity: startAnimation ? 1 : 0 }}
           >
-            UNYIELDING FINISHES.
+            UNYIELDING <br /> FINISHES.
             <br />
-            PREMIUM
+            <span><img src={herotxt} alt="cant load" /></span><span>PREMIUM</span>
             <br />
             PROTECTION
           </h1>
