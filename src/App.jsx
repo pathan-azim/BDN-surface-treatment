@@ -9,7 +9,7 @@ import FacilityTour from "./components/FacilityTour";
 import ProcessSection from "./components/ProcessSection";
 import ServicesSection from "./components/ServicesSection";
 import LogoWall from "./components/LogoWall";
-import Footer from "./components/Footer";
+import Footer from "./components/ContactSection";
 import LoadingScreen from "./components/LoadingScreen";
 
 export default function App() {
