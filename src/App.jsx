@@ -11,6 +11,7 @@ import ServicesSection from "./components/ServicesSection";
 import LogoWall from "./components/LogoWall";
 import Footer from "./components/ContactSection";
 import LoadingScreen from "./components/LoadingScreen";
+import TextureSection from "./components/TextureSection";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -118,6 +119,7 @@ export default function App() {
           <FeaturedWork />
           <ProcessSection />
           <ServicesSection />
+          <TextureSection />
           <LogoWall />
         </main>
         <Footer />
