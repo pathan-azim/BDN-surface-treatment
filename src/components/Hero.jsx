@@ -70,6 +70,7 @@ export default function Hero({ startAnimation }) {
         className="hero"
         ref={containerRef}
         style={{
+          paddingTop: "10vh",
           overflow: "hidden",
           position: "relative",
           width: "100%",
@@ -77,18 +78,19 @@ export default function Hero({ startAnimation }) {
         }}
       >
         <div className="hero-text">
+         
           <h1 
             ref={textRef} 
             style={{ opacity: startAnimation ? 1 : 0 }}
           >
-            UNYIELDING <br /> FINISHES.
-            <br />
-            <span><img src={herotxt} alt="cant load" /></span><span>PREMIUM</span>
+            <div className="bgfade"></div>
+            UNYIELDING <br />FINISHES.<br />
+            <span>PREMIUM</span>
             <br />
             PROTECTION
           </h1>
         </div>
-
+        
         <video
           ref={videoRef}
           className="hero-video"
@@ -99,10 +101,12 @@ export default function Hero({ startAnimation }) {
           preload="auto" 
           style={{
             position: "absolute",
+           
             width: "45vw", 
             height: "45vw",
             objectFit: "cover",
-            borderRadius: "50%",
+            borderRadius: "60%",
+            
             top: "55%",
             left: "75%",
             clipPath: "circle(50% at 50% 50%)",

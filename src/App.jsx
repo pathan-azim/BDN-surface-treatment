@@ -114,7 +114,7 @@ export default function App() {
       <div className="page">
        
         <main>
-          <Hero startAnimation={!loading} />
+          <Hero  startAnimation={!loading} />
           <FacilityTour />
           <FeaturedWork />
           <ProcessSection />

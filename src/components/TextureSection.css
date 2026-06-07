@@ -54,7 +54,7 @@
 /* Enlarged Bold Header Specifications */
 .texture-head-text, 
 .texture-foot-text {
-  font-family: 'Arial Black', 'Impact', sans-serif; /* Explicit clean bold fallbacks */
+  font-family: 'MyCustomFont1', sans-serif; /* Explicit clean bold fallbacks */
   font-size: 16px; /* Scaled up from 13px */
   font-weight: 900; /* Extra bold weighting styling */
   letter-spacing: 0.75px;

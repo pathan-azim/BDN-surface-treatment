@@ -1,15 +1,37 @@
 /* ==========================================================================
    1. Global Resets, Fonts, and Configuration
    ========================================================================== */
-@font-face {
+/* @font-face {
   font-family: 'MyCustomFont';
   src: url('./assets/fonts/NEUEHAASDISPLAYBOLD.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
+} */
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('./assets/fonts/Ridgeline201-Regular.otf') format('opentype'); 
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
+  font-family: 'MyCustomFont3';
+  src: url('./assets/fonts/Montserrat-Black.ttf') format('truetype'); 
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'MyCustomFont2';
+  src: url('./assets/fonts/NeueHaasDisplay-Regular.otf') format('opentype'); 
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'MyCustomFont1';
-  src: url('./assets/fonts/Brexon.ttf') format('truetype'); 
+  src: url('./assets/fonts/CabinetGrotesk-Extrabold.otf') format('opentype'); 
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -17,7 +39,11 @@
 
 * {
   box-sizing: border-box;
-  /* font-family: 'MyCustomFont', sans-serif; */
+}
+
+:root {
+  --font-heading: 'MyCustomFont1', sans-serif;
+  --font-body: 'MyCustomFont3', sans-serif;
 }
 
 @layer base {
@@ -31,9 +57,13 @@
 
 body {
   margin: 0;
-  font-family: 'MyCustomFont', sans-serif;
+  font-family: 'MyCustomFont3', sans-serif;
   background: none;
   color: #111;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
 
 a {
@@ -52,15 +82,19 @@ a {
    2. Desktop Topbar & Navigation Layout Base
    ========================================================================== */
 .topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
   width: 100%;
-  position: relative; /* Fixed: Kept inside doc flow to protect hero boundaries */
   z-index: 100 !important;
   box-sizing: border-box;
+  background-color: transparent !important;
 }
+
 
 .brand img {
   height: 40px; 
@@ -72,9 +106,12 @@ a {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+
+   /* Ensures nav buttons are above the hero video layer */
 }
 
 .navbtns h4 {
+  font-family: 'MyCustomFont1', sans-serif;
   position: relative;
   padding: 8px 15px;
   border: 1px solid #00000089;
@@ -149,48 +186,56 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  position: absolute;
   margin-top:5vh;
   margin-left: 2vw;
 }
 
+
 .hero-text h1 {
-  font-family: 'MyCustomFont', sans-serif;
+  font-family: 'MyCustomFont2', sans-serif;
   font-size: 7vw;
   line-height: 0.9;
-  letter-spacing: -0.0em;
+
+  letter-spacing: -0.03em;
   margin-bottom: 15%;
   padding-left: 10px;
-  max-width: 10ch;
-  font-weight: 700;
+  max-width: 11ch;
+  font-weight: 900;
   text-transform: uppercase;
 }
 
-  /* High-End Color & Aesthetic styling */
- .hero-text span {
-  font-family: 'MyCustomFont1', sans-serif;
-  font-weight: 200;
-  /* display: block; */
-  letter-spacing: -0.01em;
-  /* color: #339355;        */
-  font-style: italic;            
-
   
-           
-}
 
 
  .hero-text span img  {
-  height: 0.8em;
-  width: 14vw;
+  height: 1.8em;
+  width: 12vw;
   align-self: center;
   object-fit: cover;
-  border-radius: 999px;
+  border-radius: 32px;
   vertical-align: middle;
-
+  position: absolute;
+  left: 1vw;
+  top: -5.5vw;
+  z-index: -1;
+   /* --- CRITICAL LAYER FIXES --- */
  }
-
-
+ .hero-text .bgfade{
+  position: absolute;
+  top: -10vh;
+  width: 50vw;
+  height: 40vw;
+  
+  z-index: -2;
+  /* background-color: #0f0f0e; */
+  background: radial-gradient(
+  circle,
+  rgba(90, 233, 142, 0.8) 0%,
+  transparent 70%
+);
+filter: blur(80px);
+}
 .eyebrow {
   font-size: 12px;
   letter-spacing: 0.12em;
@@ -206,7 +251,7 @@ a {
   min-height: 420px;
 }
 
-.hero video, 
+
 canvas {
   pointer-events: none; 
 }
@@ -215,7 +260,7 @@ canvas {
    4. Main Content Cards, Grid Layouts & Sections
    ========================================================================== */
 .section {
-  font-family: 'MyCustomFont', sans-serif;
+  font-family: 'MyCustomFont3', sans-serif;
   padding: 18px;
   padding-top: 20px;
   border-top: #0f1a10 1px solid;
@@ -467,6 +512,8 @@ canvas {
  .hero .hero-video {
     /* Safe fallback scale tracking variable adjustment for tablet layouts */
     --video-zoom: 2 !important;
+     
+ 
     zoom: unset !important; /* Forces removal of old layout engines */
   }
 
@@ -479,15 +526,20 @@ canvas {
   .footer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+/* ==========================================================================
+   TABLET & MOBILE BREAKPOINT (768px and under)
+   ========================================================================== */
 @media (max-width: 768px) {
+  
   /* Layout Flow Normalizer */
   .topbar {
     padding: 1.25rem 1rem;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap !important;
+    background-color: transparent !important;
   }
-
+  
   /* Structural element cleanout */
   .navbtns {
     display: none !important;
@@ -496,25 +548,57 @@ canvas {
   .brand {
     flex-shrink: 0;
   }
+  
   .brand img {
     height: 32px;
     width: auto;
-    zoom:1.8;
   }
 
   .location {
     margin-left: auto;
-    margin-right: 2.5rem;
+    margin-right: 3.5rem; /* Increased to give breathing room before fixed hamburger */
     display: block !important;
   }
+  
   .location button {
     padding: 0.55rem 1.1rem;
     font-size: 0.85rem;
     white-space: nowrap;
   }
-
-  /* Interactive Hamburger Layout */
   
+  /* Hero Section Mobile Layout Configuration */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 60px); 
+    padding: 12vh 1.5rem 2rem 1.5rem;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(2.5rem, 10vw, 4.2rem) !important; 
+    line-height: 1.0;
+    max-width: 100%;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 75% !important;
+    left: 75% !important;
+    width: 80vw !important;
+    max-width: 360px !important;
+    height: 80vw !important; /* Forces uniform canvas square aspect ratio */
+    object-fit: cover;
+    zoom: unset !important; /* Safely removes old layout engine rules */
+    
+    /* Mixes offsets with variable overrides for smooth GSAP animations */
+    transform: translate(-50%, -50%) scale(var(--video-zoom, 3.5)) !important;
+  }
+
+  /* Interactive Hamburger Trigger Layer */
   .mobile-menu-btn {
     display: flex !important;
     flex-direction: column;
@@ -526,47 +610,39 @@ canvas {
     cursor: pointer;
     padding: 0;
     flex-shrink: 0;
-  
-    /* --- CRITICAL LAYER FIXES --- */
-    position: fixed !important;   /* Force it into screen-space independent of the header container */
-    top: 2rem !important;       /* Adjust this to match your desktop header vertical spacing alignment */
-    right: 1.3rem !important;       /* Pins it tightly to the right side viewport grid boundary */
-    z-index: 2000000000 !important; /* Sets layer dominance completely above the 999999 drawer background */
+    position: fixed !important;   
+    top: 1.5rem !important;       
+    right: 1.3rem !important;       
+    z-index: 2000000000 !important; 
   }
 
   .mobile-menu-btn span {
     width: 100%;
     height: 3px;
-    background-color: #093624; /* Signature dark green color */
+    background-color: #093624; 
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
-    
   }
 
-  /* Hamburger transformation styling states */
+  /* Hamburger Active Transformation States */
   .mobile-menu-btn.open span {
-    
-    background-color: #093624; /* Keeps button clearly visible against beige drawer background */
+    background-color: #093624; 
   }
   .mobile-menu-btn.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
   .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
   .mobile-menu-btn.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-  /* REBUILT DRAWER: Native Screen-Space Overlay Base State.
-     Using Opacity instead of calculation coordinates protects layout structure.
-  */
+  /* Rebuilt Screen-Space Overlay Nav Drawer */
   .mobile-drawer {
     display: flex !important;
     align-items: center;
     justify-content: center;
     position: fixed !important;
-    inset: 0 !important; /* Spans top, bottom, left, and right completely */
+    inset: 0 !important; 
     width: 100vw !important;
     height: 100vh !important;
-    background-color: #f4ede4 !important; /* Light sand/beige color */
-    z-index: 999999 !important; /* Sits over everything except the hamburger trigger button */
-    
-    /* GSAP takes control over these properties cleanly without conflicting */
+    background-color: #f4ede4 !important; 
+    z-index: 999999 !important; 
     opacity: 0;
     pointer-events: none; 
     box-sizing: border-box;
@@ -583,7 +659,7 @@ canvas {
   }
 
   .mobile-nav a {
-    color: #093624 !important; /* Premium branding dark green */
+    color: #093624 !important; 
     font-size: 2.25rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.05em;
@@ -592,33 +668,32 @@ canvas {
     display: inline-block;
   }
 
-  /* Remainder Page Mobile Resets */
-  .hero { padding: 20px 16px; }
-  .hero-text h1 { font-size: clamp(2.5rem, 10vw, 4.2rem); }
-  .hero .hero-video {
-    left: 50% !important;
-    top: 60% !important;
-    width: 60vw !important;
-    max-width: 280px !important;
-    height: auto !important;
-
-    /* --- CRITICAL RESPONSIVE BREAKPOINT CHANGE --- */
-    --video-zoom: 3.5 !important; /* Seamlessly changes scale ratio configuration on mobile screens */
-    zoom: unset !important;
-  }
+  /* Remainder Sub-Page Component Mobile Resets */
   .section { margin: 0 16px; padding: 18px 0; }
   .grid.works { grid-template-columns: 1fr; }
   .process { grid-template-columns: repeat(2, 1fr); }
   .services { grid-template-columns: 1fr; }
+  
   #moving-text { width: auto !important; margin-left: 0 !important; white-space: normal !important; }
   #moving-text h1 { font-size: 8vw; }
+  
   .footer { grid-template-columns: 1fr; text-align: center; }
   .footer > * { justify-self: center; }
 }
 
+/* ==========================================================================
+   SMARTPHONE BREAKPOINT (640px and under)
+   ========================================================================== */
 @media (max-width: 640px) {
   .hero { padding: 16px 12px; }
-  .hero .hero-video { width: 80vw !important; max-width: 260px !important; top: 62% !important; }
+  
+  .hero .hero-video { 
+    width: 80vw !important; 
+    height: 80vw !important; /* Maintained responsive square geometry mapping */
+    max-width: 260px !important; 
+    top: 62% !important; 
+  }
+  
   .section { margin: 0 12px; }
   .footer { padding: 18px 12px; }
 }

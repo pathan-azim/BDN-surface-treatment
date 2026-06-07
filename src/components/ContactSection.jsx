@@ -73,10 +73,10 @@ const handleSubmit = async (e) => {
         
         {/* TOP LEFT BLOCK: Section Main Title */}
         <div className="matrix-block title-block">
-          <h2 className="section-title">Contact Form</h2>
+          <h3 className="section-title">CONTACT FORM</h3>
           {status.message && (
             <div className={`status-alert ${status.type}`} style={{
-              marginTop: '15px', 
+              marginTop: '15px',
               padding: '10px', 
               borderRadius: '4px',
               backgroundColor: status.type === 'success' ? '#e6f4ea' : '#fce8e6',
@@ -161,18 +161,9 @@ const handleSubmit = async (e) => {
           </form>
         </div>
 
-        {/* BOTTOM LEFT BLOCK: Map View Box */}
-        <div className="matrix-block map-block">
-          <div className="map-wrapper-frame">
-            <img src={map} alt="Location Map Vector" className="map-graphic-asset" />
-            <div className="map-pin-indicator"></div>
-            <div className="map-brand-accent">⋉</div>
-          </div>
-        </div>
-
-        {/* BOTTOM RIGHT BLOCK: Contact Info */}
+        {/* BOTTOM LEFT BLOCK: Contact Info (moved left) */}
         <div className="matrix-block metadata-block">
-          <h2 className="info-main-title">Contact Us</h2>
+          <h3 className="info-main-title">CONTACT US</h3>
           <div className="info-details-layout">
             <div className="info-column">
               <h4>Executive Leadership</h4>
@@ -203,6 +194,15 @@ const handleSubmit = async (e) => {
                 Moshi, Maharashtra 411070
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* BOTTOM RIGHT BLOCK: Map View Box (moved right) */}
+        <div className="matrix-block map-block">
+          <div className="map-wrapper-frame">
+            <img src={map} alt="Location Map Vector" className="map-graphic-asset" />
+            <div className="map-pin-indicator"></div>
+            <div className="map-brand-accent">⋉</div>
           </div>
         </div>
       </div>
