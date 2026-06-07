@@ -492,6 +492,9 @@ canvas {
 /* ==========================================================================
    7. Rebuilt Responsive Infrastructure & Clean Overlay State
    ========================================================================== */
+/* ==========================================================================
+   TABLET & MEDIUM SCREEN BREAKPOINT (1024px and under)
+   ========================================================================== */
 @media (max-width: 1024px) {
   .hero {
     padding: 24px;
@@ -510,11 +513,8 @@ canvas {
     margin-bottom: 1.2rem;
   }
  .hero .hero-video {
-    /* Safe fallback scale tracking variable adjustment for tablet layouts */
     --video-zoom: 2 !important;
-     
- 
-    zoom: unset !important; /* Forces removal of old layout engines */
+    zoom: unset !important; 
   }
 
   .section { margin: 0 24px; }
@@ -556,7 +556,7 @@ canvas {
 
   .location {
     margin-left: auto;
-    margin-right: 3.5rem; /* Increased to give breathing room before fixed hamburger */
+    margin-right: 3.5rem; 
     display: block !important;
   }
   
@@ -579,23 +579,24 @@ canvas {
   }
 
   .hero-text h1 {
-    font-size: clamp(2.5rem, 10vw, 4.2rem) !important; 
-    line-height: 1.0;
+    font-size: clamp(2.2rem, 9vw, 3.8rem) !important; 
+    line-height: 1.1;
     max-width: 100%;
   }
 
   .hero-video {
     position: absolute;
-    top: 75% !important;
-    left: 75% !important;
-    width: 80vw !important;
-    max-width: 360px !important;
-    height: 80vw !important; /* Forces uniform canvas square aspect ratio */
+    /* THE FIX: Re-centered elements to keep video on Vivo Y21 screen space */
+    top: 60% !important;
+    left: 50% !important;
+    width: 65vw !important;
+    max-width: 280px !important;
+    height: 65vw !important; 
     object-fit: cover;
-    zoom: unset !important; /* Safely removes old layout engine rules */
+    zoom: unset !important; 
     
-    /* Mixes offsets with variable overrides for smooth GSAP animations */
-    transform: translate(-50%, -50%) scale(var(--video-zoom, 3.5)) !important;
+    /* Blends your offsets with the GSAP variable scaling factor */
+    transform: translate(-50%, -50%) scale(var(--video-zoom, 2.5)) !important;
   }
 
   /* Interactive Hamburger Trigger Layer */
@@ -668,7 +669,7 @@ canvas {
     display: inline-block;
   }
 
-  /* Remainder Sub-Page Component Mobile Resets */
+  /* Miscellaneous Sub-Page Mobile Overrides */
   .section { margin: 0 16px; padding: 18px 0; }
   .grid.works { grid-template-columns: 1fr; }
   .process { grid-template-columns: repeat(2, 1fr); }
@@ -688,10 +689,11 @@ canvas {
   .hero { padding: 16px 12px; }
   
   .hero .hero-video { 
-    width: 80vw !important; 
-    height: 80vw !important; /* Maintained responsive square geometry mapping */
-    max-width: 260px !important; 
-    top: 62% !important; 
+    width: 75vw !important; 
+    height: 75vw !important; 
+    max-width: 250px !important; 
+    top: 65% !important; 
+    left: 50% !important;
   }
   
   .section { margin: 0 12px; }
